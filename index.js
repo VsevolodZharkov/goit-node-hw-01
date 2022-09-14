@@ -1,5 +1,5 @@
 // const contacts = require('./db/contacts.json');
-const { getAll } = require('./contacts');
+const { getAll, getContactById, removeContact, addContact } = require('./contacts');
 const { Command } = require("commander");
 const program = new Command();
 program
@@ -20,17 +20,17 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 			console.table(await getAll());
 				break;
 	
-			// case "get":
-			// 	// ... id
-			// 	break;
+			case "get":
+				console.log(await getContactById(id));
+				break;
 	
-			// case "add":
-			// 	// ... name email phone
-			// 	break;
-	
-			// case "remove":
-			// 	// ... id
-			// 	break;
+			case "add":
+				console.log(await addContact(name, email, phone ));
+				break;
+				
+			case "remove":
+				console.log(await removeContact(id));
+				break;
 	
 			default:
 				console.warn("\x1B[31m Unknown action type!");
